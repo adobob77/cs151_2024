@@ -13,12 +13,12 @@ public class Student
     private int SID;
     private STUDENT_YEAR year;
     private String name;
-    Map<String, Integer> coursesTaken;
-    float GPA;
+    private Map<String, Integer> coursesTaken;
+    double GPA;
 
     public Student(){}
 
-    public Student(String name, int studentID, STUDENT_YEAR year, float GPA, Map<String, Integer> coursesTaken)
+    public Student(String name, int studentID, STUDENT_YEAR year, Map<String, Integer> coursesTaken)
     {
         this.name = name;
         this.SID = studentID;
@@ -63,7 +63,7 @@ public class Student
     {
         this.coursesTaken = courseMap;
     }
-    public float calculateGPA()
+    public double calculateGPA()
     {
         int total = 0;
         for(Map.Entry<String, Integer> entry : coursesTaken.entrySet())
@@ -72,5 +72,23 @@ public class Student
         }
         GPA = total/coursesTaken.size();
         return GPA;
+    }
+    public void printInfo()
+    {
+        System.out.println("Student [name=" + name + ", student ID=" + SID + ", year=" + year + ", GPA=" + calculateGPA() + "]\nCourses Taken:");
+        int i = 1;
+        for(Map.Entry<String, Integer> entry : coursesTaken.entrySet())
+        {
+            System.out.print(entry.getKey());
+            if(i < coursesTaken.size())
+            {
+                System.out.print(", ");
+                i++;
+            }
+            else
+            {
+                System.out.println();
+            }
+        }
     }
 }
