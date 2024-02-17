@@ -11,7 +11,7 @@ public class BankAccount
         this.accountNumber = accountNumber;
         this.name = name;
         this.balance = initialBalance;
-        if(this.balance < 0)
+        if (this.balance < 0)
             this.balance = 0;
     }
 
@@ -19,30 +19,37 @@ public class BankAccount
     {
         return accountNumber;
     }
+
     public float getBalance()
     {
         return balance;
     }
-    public void deposit(float amount)
+
+    public boolean deposit(float amount)
     {
-        if(amount <= 0)
-            return;
+        if (amount < 0)
+            return false;
         balance += amount;
+        return true;
     }
-    public void withdraw(float amount)
+
+    public boolean withdraw(float amount)
     {
-        if(balance - amount < 0)
-            return;
+        if (amount < 0)
+            return false;
+        if (balance - amount < 0)
+            return false;
         balance -= amount;
+        return true;
     }
-    public void transfer(BankAccount account, float amount)
+
+    public boolean transfer(BankAccount account, float amount)
     {
-        if(amount < 0 || this.getBalance() - amount < 0)
+        if (amount < 0 || !this.withdraw(amount))
         {
-            return;
+            return false;
         }
-        this.withdraw(amount);
-        account.deposit(amount);
+        return account.deposit(amount);
     }
 
     public String toString()

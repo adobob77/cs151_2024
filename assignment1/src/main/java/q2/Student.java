@@ -1,5 +1,6 @@
 package q2;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Collections;
 
@@ -16,14 +17,16 @@ public class Student
     private Map<String, Integer> coursesTaken;
     double GPA;
 
-    public Student(){}
+    public Student()
+    {
+    }
 
     public Student(String name, int studentID, STUDENT_YEAR year, Map<String, Integer> coursesTaken)
     {
         this.name = name;
         this.SID = studentID;
         this.year = year;
-        this.GPA = GPA;
+        this.GPA = 0;
         this.coursesTaken = coursesTaken;
     }
 
@@ -31,63 +34,80 @@ public class Student
     {
         return name;
     }
+
     public void setname(String name)
     {
         this.name = name;
     }
+
     public int getID()
     {
         return SID;
     }
+
     public void setID(int SID)
     {
         this.SID = SID;
     }
+
     public STUDENT_YEAR getYear()
     {
         return year;
     }
+
     public void setYear(STUDENT_YEAR year)
     {
         this.year = year;
     }
+
     public Map<String, Integer> getAllCourses()
     {
         return coursesTaken;
     }
+
     public void addCourse(String courseName, int grade)
     {
         coursesTaken.put(courseName, grade);
     }
+
     public void importCourses(Map<String, Integer> courseMap)
     {
         this.coursesTaken = courseMap;
     }
+
     public double calculateGPA()
     {
+        if(coursesTaken == null || coursesTaken.isEmpty())
+            return 0;
+
         int total = 0;
-        for(Map.Entry<String, Integer> entry : coursesTaken.entrySet())
+        for (Map.Entry<String, Integer> entry : coursesTaken.entrySet())
         {
             total += entry.getValue();
         }
-        GPA = total/coursesTaken.size();
+        GPA = total / coursesTaken.size();
         return GPA;
     }
+
     public void printInfo()
     {
-        System.out.println("Student [name=" + name + ", student ID=" + SID + ", year=" + year + ", GPA=" + calculateGPA() + "]\nCourses Taken:");
+        System.out.print("Student [name=" + name + ", student ID=" + SID + ", year=" + year + ", GPA=" + calculateGPA() + "]\nCourses Taken:\n    ");
         int i = 1;
-        for(Map.Entry<String, Integer> entry : coursesTaken.entrySet())
+        if(coursesTaken == null || coursesTaken.isEmpty())
+            System.out.println("NONE");
+        else
         {
-            System.out.print(entry.getKey());
-            if(i < coursesTaken.size())
+            for (Map.Entry<String, Integer> entry : coursesTaken.entrySet())
             {
-                System.out.print(", ");
-                i++;
-            }
-            else
-            {
-                System.out.println();
+                System.out.print(entry.getKey());
+                if (i < coursesTaken.size())
+                {
+                    System.out.print(", ");
+                    i++;
+                } else
+                {
+                    System.out.println();
+                }
             }
         }
     }

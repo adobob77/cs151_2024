@@ -14,9 +14,9 @@ public class AccountManager
     public BankAccount find(int accountNumber)
     {
         int i = 0;
-        while(i < accountList.size())
+        while (i < accountList.size())
         {
-            if(accountList.get(i).getAccountNumber() == accountNumber)
+            if (accountList.get(i).getAccountNumber() == accountNumber)
             {
                 return accountList.get(i);
             }
@@ -24,26 +24,30 @@ public class AccountManager
         }
         return null;
     }
+
     public void create(int accountNumber, String name, int initialBalance)
     {
         accountList.add(new BankAccount(accountNumber, name, initialBalance));
     }
+
     public void delete(int accountNumber)
     {
         BankAccount account = this.find(accountNumber);
-        if(account != null)
+        if (account != null)
             accountList.remove(account);
     }
+
     public void deposit(int accountNumber, float amount)
     {
         BankAccount account = this.find(accountNumber);
-        if(account != null)
+        if (account != null)
             account.deposit(amount);
     }
+
     public void withdraw(int accountNumber, float amount)
     {
         BankAccount account = this.find(accountNumber);
-        if(account != null)
+        if (account != null)
             account.withdraw(amount);
     }
 }

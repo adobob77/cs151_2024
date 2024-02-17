@@ -22,11 +22,16 @@ public class StudentDemo
 
         student1.importCourses(courses);
 
-        Student student2 = new Student("Andrei",192375829,STUDENT_YEAR.JUNIOR, courses);
+        Student student2 = new Student("Andrei", 192375829, STUDENT_YEAR.JUNIOR, courses);
+
+        Student student3 = new Student();
 
         System.out.println("Data of student1:");
         student1.printInfo();
         System.out.println("\nData of student2:");
         student2.printInfo();
+        System.out.println("\nData of student3:");
+        student3.printInfo();
+
     }
 }

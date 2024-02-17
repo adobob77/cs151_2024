@@ -15,6 +15,7 @@ public class Bank
         manager.find(3).transfer(manager.find(2), 500);
         manager.find(2).transfer(manager.find(4), 0);
         manager.find(5).transfer(manager.find(5), 1000);
+        manager.find(6);
 
         System.out.println(manager.find(1).toString());
         System.out.println(manager.find(2).toString());
